@@ -1,5 +1,9 @@
 ## AI-Agent Market Research – Slides
 
+For detailed quantitative data and collected data analysis, refer to the sheets:  
+[Google Sheets Data Link](https://docs.google.com/spreadsheets/d/1-zk_8FhfWTNsSGay4lkuSg7sKWXi730v0-Tt4caPc7s/edit?gid=673348795#gid=673348795)
+
+
 ![Slide 01](<https://github.com/ethHong/AI-Agent-Market-Research-Analysis/blob/main/Research%20-%20Slides/Agent%20AI%20Market%20Analysis%20-%20Ethan%20Hong%2001.jpg?raw=1>)
 ![Slide 02](<https://github.com/ethHong/AI-Agent-Market-Research-Analysis/blob/main/Research%20-%20Slides/Agent%20AI%20Market%20Analysis%20-%20Ethan%20Hong%2002.jpg?raw=1>)
 ![Slide 03](<https://github.com/ethHong/AI-Agent-Market-Research-Analysis/blob/main/Research%20-%20Slides/Agent%20AI%20Market%20Analysis%20-%20Ethan%20Hong%2003.jpg?raw=1>)
