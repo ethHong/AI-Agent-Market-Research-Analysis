@@ -21,7 +21,12 @@
 5. **Match Group**: A/B testing framed around "consumer user journey"; Trust & Safety framed as "safe and trusted" consumer experiences (mirrors gUP mission language)
 6. **Skills**: added Conversational AI, Generative AI, AI Customer Support, User Journey Optimization
 
-No fabricated metrics — all numbers from the master resume plus the human-parity resolution rate Ethan confirmed.
+No fabricated metrics — all numbers from the master resume plus support metrics Ethan confirmed in-session:
+
+- **Resolution rate**: 80–90%, on par with human agents (summary + dedicated bullet)
+- **Volume**: recent project scale ~9M support calls/year (Korea ~7.8M + Japan ~1.2M), 4,000–5,000 concurrent calls
+- **Quality gate**: every release passes 100% of automated conversation-QA tests (voice CSAT not collected — intentionally framed via QA gate instead)
+- **Containment**: still early/low at this 0→1 stage — omitted from resume; interview framing: intentional human-in-the-loop design while establishing quality baseline
 
 ## Glossary (asked during session)
 
