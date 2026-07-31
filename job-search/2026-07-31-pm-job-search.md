@@ -76,6 +76,19 @@ Run of the `ethan-pm-job-search` skill. Profile: mid-to-senior IC PM, Voice AI A
 - **Databricks — Staff PM, AI Platform**: Staff-level, 5+ yrs *platform-infra* PM required — over-leveled/stretch domain.
 - **Salesforce Agentforce, Sierra, Decagon, Cresta, PolyAI, Parloa, Zoom Virtual Agent, etc.**: excluded as direct Delight.ai competitors.
 
+## Posting dates (as of 2026-07-31, from aggregator listings — verify on the live posting)
+
+| Role | Posted / signal | Freshness |
+|---|---|---|
+| OpenAI — PM, API Agents | Indexed ~Feb 2026; still on openai.com/careers | ~5–6 months (evergreen-style listing, still live) |
+| Amazon — Sr PM-T, Alexa Connections | Aggregator capture Mar 30, 2026; 3+ parallel reqs incl. newer-format ID 10379669 | ~4 months, actively re-posted |
+| Anthropic — PM, API Growth | Originally ~Apr 11–12, 2026; "Reposted 24 days ago" per recent Ladders capture | Reposted ~early July 2026 — active |
+| NVIDIA — Sr SW PM, STT/TTS | LinkedIn job ID (3940056379) dates to ~mid-2024 | ⚠️ Possibly stale — verify live status on Workday before applying |
+| Microsoft — Sr PM, Copilot AI | Posted Apr 28, 2026 on microsoft.ai (job/senior-product-manager-copilot-ai-3) | ~3 months |
+| Uber — Sr PM, Conversational AI (#147437) | Date not shown; role cluster active; one Uber listing shows application deadline Aug 7, 2026 | ⚠️ Deadline signal — apply this week |
+| Google — Sr PM, AI Products, Google Labs | Posted Jul 17, 2026 | ✅ Fresh (~2 weeks) |
+| Uber — Sr PM, AI Platform (Michelangelo) | Date not shown; same Aug 7, 2026 deadline signal may apply | ⚠️ Verify deadline — apply this week |
+
 ## Next steps
 
 1. Priority applies: **OpenAI API Agents** and **Amazon Alexa Connections** (highest JD overlap) — verify live status on the career page first.
