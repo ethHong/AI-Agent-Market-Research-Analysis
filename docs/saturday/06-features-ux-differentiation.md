@@ -145,17 +145,18 @@ tail that fits Foundation Models' 4,096-token window. So the query orchestrator 
 Effort is modest (SQLite FTS5 is enough for v1) and it converts the 4k limitation from
 a product ceiling into an implementation detail.
 
-## 9. Open product questions (discuss before M1)
+## 9. Product decisions (confirmed with owner, 2026-08-01)
 
-1. **Wake phrase ergonomics**: "Saturday" appears in normal speech (dates!). Options:
-   two-word phrase ("Hey Saturday"), user-customizable phrase, or lean harder on
-   Watch-tap/push-to-talk and treat wake phrase as beta. *Recommendation: ship
-   Watch-tap + push-to-talk first; wake phrase behind a toggle.*
-2. **Advise/Reality-check scope in v1**: highest wow, highest hallucination risk on a
-   3B model. Ship in v1 behind "beta" label, or hold for the MLX 4B quality tier?
-3. **W4 (sessionless assistant mode)**: include in v1 for daily-use retention, or is it
-   scope creep that delays the moat?
-4. **Proactive capture**: auto-detect commitments ("I'll send it Friday") and offer
-   reminders at session end — v1 or v1.1? (Live interruptions are ruled out; this is
-   end-of-session only.)
-5. **Summary templates per tag**: how many at launch? (Meeting + Lecture seems enough.)
+1. **Query trigger**: Watch-tap + push-to-talk are the v1 primary triggers; the wake
+   phrase ships as an off-by-default beta toggle (the word "Saturday" collides with
+   dates in normal speech; KWS tuning is deferred risk).
+2. **Advise/Reality-check (W3)**: **in v1 with a "beta" label** — source labels and
+   hedging UX (§6) are mandatory, private surfaces only.
+3. **W4 sessionless assistant mode**: **in v1** — daily-use retention keeps the Action
+   Button assignment alive; marginal cost is low since the tool layer exists anyway.
+4. **Proactive commitment capture**: **in v1**, end-of-session card only — falls out of
+   the `@Generable` action-item extraction pass nearly for free.
+
+### Still open
+- **Summary templates per tag**: Meeting + Lecture at launch (assumed, not yet confirmed).
+- Wake-phrase final wording if/when the beta graduates ("Hey Saturday" vs custom).

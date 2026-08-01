@@ -33,10 +33,17 @@ Goal: prove the three scariest assumptions on a real iPhone (and Watch if availa
 ## M3 — Actions/tools (2–3 weeks)
 - CalendarTool, ReminderTool, PlacesTool (MKLocalSearch), MessageDraftTool —
   confirm-before-commit UX.
-- Post-session summary card: decisions + action items (`@Generable` structured output).
+- Post-session summary card: decisions + action items (`@Generable` structured output),
+  including **commitment detection** ("I'll send it Friday" → one-tap reminder offer)
+  on the end-of-session card (decided: v1).
+- **W4 sessionless assistant mode** (decided: v1): same ask flow + tools without an
+  active session — the daily-use surface that keeps the Action Button assigned.
 
 ## M4 — Wake phrase + polish (2–3 weeks)
-- In-session keyword spotting ("Saturday, …"); VAD gating for battery.
+- In-session wake phrase as **off-by-default beta toggle** (decided): transcript
+  hotphrase first, KWS model only if needed; VAD gating for battery.
+- **Advise/Reality-check "beta"** (W3, decided: v1): source labels + hedging UX,
+  private surfaces (wrist/AirPods/Silent Mode) only.
 - Interruption handling hardening (calls, Siri, route changes), AirPods answer mode.
 - MLX model download flow for non-Apple-Intelligence devices.
 
