@@ -1,0 +1,96 @@
+# CLAUDE.md — Saturday
+
+## What this repo currently is
+
+This repo started as an AI-agent market research archive (`Research - Slides/`, README).
+It now also hosts the planning and (eventually) the code for **Saturday**, a new paid
+iOS + watchOS app. Planning docs live in `docs/saturday/`. Do not modify the legacy
+research slides.
+
+## Product: Saturday
+
+**One-liner:** A session-based, on-device AI assistant for iPhone + Apple Watch that
+listens *with* you during a conversation or meeting and, when you ask it something
+mid-conversation, answers using the context of what was just said — like Jarvis/Friday
+("Saturday" is named after Friday), but private and fully offline.
+
+**Core loop:**
+1. User starts a **listening session** (Action Button, App Shortcut, widget, or Watch).
+2. Saturday transcribes speech on-device into a **rolling transcript buffer**.
+3. User asks a question mid-conversation (wake phrase during session, or tap/raise on Watch).
+4. On-device LLM answers using the recent transcript as context.
+5. Optional tool actions: create calendar events/reminders, draft messages, find nearby places.
+
+**Hard product constraints (decided — do not re-litigate):**
+- **No cloud LLM APIs.** All ASR + LLM inference is on-device. This is the product's
+  privacy moat and its cost structure (zero marginal cost → paid-upfront pricing works).
+- **Session-based listening, not always-on.** iOS forbids 3rd-party always-on wake words;
+  background continuous recording is an App Store rejection risk. Saturday listens only
+  during an explicit user-started session (recording continues with screen locked via the
+  `audio` background mode). A custom wake phrase ("Hey Saturday") is allowed *within* an
+  active session via local keyword spotting.
+- **Watch is a first-class surface from v1.** The Watch is the mic + quick-activation UI;
+  the paired iPhone is the brain (ASR + LLM). Watch↔iPhone via WatchConnectivity audio
+  streaming. No LLM inference on the Watch itself (memory-infeasible).
+- **Hybrid LLM strategy.** Primary: Apple **Foundation Models framework** (iOS 26+, free,
+  on-device ~3B, built-in tool calling / guided generation) on Apple Intelligence devices.
+  Fallback/quality option: bundled or downloadable open-source model via **MLX Swift**
+  (e.g. Qwen3-4B 4-bit) for older devices or when higher quality is needed.
+- **English first; Korean is a fast-follow** (keep it in mind when picking models/ASR —
+  prefer stacks with a credible Korean path, e.g. Qwen/EXAONE, Whisper-family ASR).
+- **Monetization: paid upfront** (buy-once). No subscription, no server costs. "No cloud,
+  no subscription" is the marketing position.
+
+## Target stack (planned)
+
+- Swift / SwiftUI, Xcode, iOS 26+ primary target (Foundation Models requires it),
+  graceful degradation path researched in docs.
+- watchOS app: SwiftUI + WatchConnectivity (audio chunk streaming to phone).
+- ASR: Apple SpeechAnalyzer/SpeechTranscriber (iOS 26) primary; WhisperKit as
+  fallback/quality option. On-device only.
+- LLM: FoundationModels framework (`LanguageModelSession`, `Tool` protocol,
+  `@Generable` guided generation); MLX Swift (`mlx-swift-examples` / `MLXLLM`) for the
+  open-model path.
+- Wake-phrase-in-session: lightweight keyword spotting (Core ML / openWakeWord-style) +
+  VAD (Silero or Apple VAD) — research notes in docs.
+- Tools/actions: EventKit (calendar/reminders), MKLocalSearch (nearby places, no API key),
+  MFMessageComposeViewController (message drafts — user must tap send; auto-send is
+  impossible on iOS, design around it), App Intents for activation surfaces.
+- TTS: AVSpeechSynthesizer to start; evaluate on-device neural options later.
+
+## Repo layout
+
+```
+CLAUDE.md                  ← this file
+README.md                  ← legacy market-research README (leave as-is)
+Research - Slides/         ← legacy market research (leave as-is)
+docs/saturday/
+  00-product-brief.md      ← concept, decisions, positioning, pricing
+  01-research-ondevice-llm.md    ← on-device LLM/ASR feasibility research
+  02-research-audio-listening.md ← listening/session/App Store constraints research
+  03-research-integrations-market.md ← system integrations + competitive landscape
+  04-architecture.md       ← system architecture (phone/watch, pipelines, tool calling)
+  05-roadmap.md            ← phased build plan (M0…)
+app/                       ← (future) Xcode project — not created yet
+```
+
+## Working conventions for Claude
+
+- This project will be continued on the owner's laptop in Xcode; until then, work here is
+  **planning, research, and architecture docs** — do not scaffold an Xcode project unless
+  asked.
+- Keep docs in English (product decision: English-first), concise and decision-oriented;
+  mark open questions explicitly in an "Open questions" section rather than burying them.
+- When feasibility claims matter (memory limits, App Store policy, API availability),
+  cite sources with URLs in the research docs and mark uncertainty. Re-verify anything
+  older than ~6 months before building on it — this space moves fast.
+- Development branch: `claude/saturday-ai-assistant-app-bfbo3x`. Commit with clear
+  messages; push with `git push -u origin <branch>`.
+
+## Key open risks (see docs for detail)
+
+1. Foundation Models quality for conversational QA over long transcripts (context limits).
+2. WatchConnectivity audio streaming latency/reliability for the Watch-mic experience.
+3. Battery drain of long listening sessions (mic + on-device ASR).
+4. App Store review posture on conversation recording UX (consent, indicators, purpose strings).
+5. Wake-phrase spotting accuracy without a licensed engine (Porcupine licensing vs DIY).
