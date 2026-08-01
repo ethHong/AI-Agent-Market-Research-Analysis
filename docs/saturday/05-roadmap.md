@@ -10,8 +10,12 @@ Goal: prove the three scariest assumptions on a real iPhone (and Watch if availa
    MLX Qwen3-4B 4-bit. *Kill criterion:* if both are unusable on-device, product pivots.
 2. **Spike B — live ASR loop:** AVAudioEngine → SpeechAnalyzer streaming transcription
    for 30+ min with screen locked (audio background mode). Measure battery, lag, accuracy.
-3. **Spike C — Watch mic relay:** Watch records → WatchConnectivity chunks → phone
-   reassembles → transcribes. Measure end-to-end latency and drop behavior.
+   Include the interruption case: incoming call mid-session → verify no background
+   resume is possible → "tap to resume" notification flow.
+3. **Spike C — Watch relay, both paths:** (a) on-watch dictation → text via
+   WatchConnectivity (expected-good baseline); (b) chunked AAC audio → phone ASR —
+   measure end-to-end latency, drop behavior, reachability flaps. Decide v1 watch input
+   mode from data.
 
 ## M1 — Core loop on iPhone (3–4 weeks)
 - Session manager + rolling transcript buffer + compaction summarizer.

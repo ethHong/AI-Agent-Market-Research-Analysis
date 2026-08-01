@@ -29,15 +29,19 @@ mid-conversation, answers using the context of what was just said — like Jarvi
   during an explicit user-started session (recording continues with screen locked via the
   `audio` background mode). A custom wake phrase ("Hey Saturday") is allowed *within* an
   active session via local keyword spotting.
-- **Watch is a first-class surface from v1.** The Watch is the mic + quick-activation UI;
-  the paired iPhone is the brain (ASR + LLM). Watch↔iPhone via WatchConnectivity audio
-  streaming. No LLM inference on the Watch itself (memory-infeasible).
+- **Watch is a first-class surface from v1.** The Watch is the quick-activation + Q&A UI;
+  the paired iPhone is the brain and the session recorder (ASR + LLM). Primary watch input
+  is on-watch dictation → text over WatchConnectivity (robust); chunked audio streaming to
+  the phone is the higher-fidelity experiment (5–30 s lag risk — see research doc 02). No
+  LLM or SpeechTranscriber on the Watch itself (memory-infeasible / API absent).
 - **Hybrid LLM strategy.** Primary: Apple **Foundation Models framework** (iOS 26+, free,
   on-device ~3B, built-in tool calling / guided generation) on Apple Intelligence devices.
   Fallback/quality option: bundled or downloadable open-source model via **MLX Swift**
   (e.g. Qwen3-4B 4-bit) for older devices or when higher quality is needed.
 - **English first; Korean is a fast-follow** (keep it in mind when picking models/ASR —
-  prefer stacks with a credible Korean path, e.g. Qwen/EXAONE, Whisper-family ASR).
+  prefer stacks with a credible Korean path: Foundation Models + SpeechTranscriber both
+  support `ko`, Qwen3 is Apache-2.0, HyperCLOVA X SEED is free <10M MAU. EXAONE/Kanana are
+  non-commercial licenses — unusable in a paid app without a deal).
 - **Monetization: paid upfront** (buy-once). No subscription, no server costs. "No cloud,
   no subscription" is the marketing position.
 
@@ -89,8 +93,15 @@ app/                       ← (future) Xcode project — not created yet
 
 ## Key open risks (see docs for detail)
 
-1. Foundation Models quality for conversational QA over long transcripts (context limits).
-2. WatchConnectivity audio streaming latency/reliability for the Watch-mic experience.
-3. Battery drain of long listening sessions (mic + on-device ASR).
-4. App Store review posture on conversation recording UX (consent, indicators, purpose strings).
-5. Wake-phrase spotting accuracy without a licensed engine (Porcupine licensing vs DIY).
+1. Foundation Models **4,096-token fixed context** — transcript compaction is mandatory
+   (TN3193 pattern); QA quality over compacted long transcripts unproven.
+2. WatchConnectivity audio streaming latency/reliability (5–30 s lag risk; dictation-text
+   path is the safe primary).
+3. Battery/thermals of long sessions (~7–12%/hr est. mic+ASR; sustained LLM decode
+   throttles 40–60% after ~10 min — answer in short bursts).
+4. App Store review posture on conversation recording UX (2.5.14 consent/indication,
+   2.5.4 audio-background-mode gray zone, 5.1.2) — frame as user-initiated note-taker.
+5. Audio-session interruptions (calls/Siri) cannot be resumed from background — needs
+   "tap to resume" notification UX.
+6. Wake-phrase spotting: no system-wide wake word ever; in-session KWS (openWakeWord/DIY)
+   or transcript hotphrase; Porcupine costs ~$6k/yr.
