@@ -75,6 +75,7 @@ docs/saturday/
   03-research-integrations-market.md ← system integrations + competitive landscape
   04-architecture.md       ← system architecture (phone/watch, pipelines, tool calling)
   05-roadmap.md            ← phased build plan (M0…)
+  06-features-ux-differentiation.md ← feature set, workflows, Siri differentiation, trust UX
 app/                       ← (future) Xcode project — not created yet
 ```
 

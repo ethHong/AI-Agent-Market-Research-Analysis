@@ -68,6 +68,11 @@ flowchart LR
   rebuild the session with condensed history on `.exceededContextWindowSize`
   (Apple's TN3193 pattern). Run compaction in short bursts (thermal throttling — doc 01).
 - Persisted locally (encrypted, Core Data/SQLite); retention policy user-configurable.
+- **Transcript retrieval (RAG)**: utterances indexed incrementally (SQLite FTS5 for v1;
+  NLEmbedding vectors later). Recall/catch-up/synthesize queries retrieve top-k relevant
+  spans from the *whole* session — not just the tail — to assemble the 4k prompt
+  (retrieved spans + compact summary + last ~1 min verbatim). Same index powers
+  post-session and cross-session search. See doc 06 §8.
 
 ### 5. Wake-phrase + VAD (in-session only)
 - VAD gates ASR compute when the room is silent (`SpeechDetector` or Silero VAD Core ML).
