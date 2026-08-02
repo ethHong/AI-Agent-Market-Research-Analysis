@@ -102,7 +102,8 @@ flowchart LR
 - `CalendarTool` (EventKit add event), `ReminderTool`, `PlacesTool` (MKLocalSearch —
   no API key, no billing), `MessageDraftTool` (compose sheet — user taps send; MessageUI
   doesn't exist on watchOS, so watch-initiated drafts hand off to the phone),
-  `WebLookupTool` (opt-in; Wikipedia API primary + DuckDuckGo HTML beta; sends only the
+  `WebLookupTool` (opt-in **general web search**: DuckDuckGo HTML search + on-phone
+  page fetch/reader extraction, Wikipedia API as structured supplement; sends only the
   LLM-composed query string, never transcript — design in doc 06 §8a),
   `TimerTool`, later `ContactsTool`.
 - **Permission ladder** (doc 03): event *add* needs zero permission via

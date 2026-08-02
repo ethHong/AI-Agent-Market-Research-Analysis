@@ -136,28 +136,46 @@ reminders, places, drafts) — not to become a junk drawer.
 when a conversation-grounded question needs outside facts, the LLM may call
 `WebLookupTool` — but Saturday never becomes a general search box. See §8a.
 
-## 8a. WebLookupTool design (no API keys, no servers)
+## 8a. WebLookupTool design — general web search, no API keys, no servers
+
+Owner decision (2026-08-01): Saturday needs **general web search**, ChatGPT/Claude-style
+— "general information questions must work," not just encyclopedia lookups.
 
 Constraint check: "no cloud" means **LLM inference** is on-device; networking per se is
 already in the product (MKLocalSearch). The line to hold is: **transcript never leaves
-the device — only a distilled query string does.**
+the device — only a distilled query string does.** Cloud assistants search via *their
+servers calling paid search APIs*; serverless Saturday must have the phone talk to a
+search engine directly — which narrows the keyless options to essentially one.
 
-- **Sources (keyless, serverless):**
-  1. *Wikipedia/Wikidata REST API* — free, stable, ToS-clean. Primary source for
-     entity/term/company lookups (most Explain-class needs).
-  2. *DuckDuckGo HTML endpoint parse* — the only keyless general-web path; brittle
-     (HTML changes break it) and ToS-gray → ship as "beta", wrap in a thin parser we
-     expect to patch. No key to steal, no quota to pay.
-  3. Rejected: Brave/Bing/Google APIs (embedded keys = cost + abuse risk, conflicts
-     with buy-once pricing); self-hosted SearXNG (violates zero-server rule).
-- **Privacy contract:** opt-in toggle ("Allow web lookups"); the tool request contains
-  only the LLM-composed query terms, never transcript text; answers carry a third
-  source label — `🌐 From the web` — alongside `🗣` / `🧠`.
-- **Offline behavior:** airplane mode → tool reports unavailable → model falls back to
-  the §6 honest refusal ("can't check the web right now").
-- **Flow:** on-device LLM decides tool call → composes minimal query → fetch top
-  results/extract → on-device LLM synthesizes answer with citation of source name.
-- Roadmap: M3 (tool layer) behind the opt-in toggle; Wikipedia first, DDG beta second.
+- **Pipeline (mini browsing, all orchestration on-device):**
+  1. LLM composes a minimal search query (never transcript text).
+  2. **DuckDuckGo HTML endpoint** (`html.duckduckgo.com` / `lite.duckduckgo.com`) →
+     parse titles/snippets/URLs. This is the general-web workhorse — the only viable
+     keyless search. Both endpoints implemented as fallbacks for each other.
+  3. Snippets often suffice for quick facts → answer directly from them.
+  4. If not: fetch **top 1–2 result pages** directly on the phone, run reader-mode
+     text extraction, LLM-compact each page — the 4,096-token window forces
+     snippet-first, fetch-few, compress-hard behavior (no 10-tab browsing).
+  5. On-device LLM synthesizes the answer, citing source names/domains.
+  - *Wikipedia/Wikidata REST API* stays as a supplementary structured source (stable,
+    ToS-clean, great for entity/term lookups) — but it is not the primary path.
+- **Honest quality bar:** this will not match ChatGPT search (their server-side search
+  stack + 100B-class models). It covers "look that up for me" mid-conversation facts;
+  the UI should present it as lookup, not research.
+- **Risks & mitigations:** DDG HTML is unofficial — layout changes or rate-limiting/
+  CAPTCHA can break it (ToS-gray). Mitigate: isolated thin parser (expect to patch in
+  app updates), dual endpoints, polite request rate, graceful "search unavailable"
+  degradation to `🧠` + hedge. No key to steal, no quota to pay.
+  Rejected alternatives: Brave/Bing/Google APIs (embedded keys = cost + abuse risk,
+  conflicts with buy-once pricing); self-hosted SearXNG or any proxy (violates
+  zero-server rule); Google HTML scraping (aggressively blocked).
+- **Privacy contract:** opt-in toggle ("Allow web lookups"); request contains only the
+  LLM-composed query terms; answers carry the third source label — `🌐 From the web` —
+  alongside `🗣` / `🧠`.
+- **Offline behavior:** airplane mode → tool reports unavailable → §6 honest refusal
+  ("can't check the web right now").
+- Roadmap: M3 (tool layer) behind the opt-in toggle — DDG search+snippets first, page
+  fetch/extraction second, Wikipedia supplement third.
 
 ## 8. Architecture implication: transcript RAG inside 4k tokens
 
