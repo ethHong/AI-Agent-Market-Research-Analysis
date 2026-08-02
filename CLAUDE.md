@@ -66,24 +66,35 @@ mid-conversation, answers using the context of what was just said — like Jarvi
 
 ```
 CLAUDE.md                  ← this file
+AGENTS.md                  ← guidance for Codex/other agents (co-development)
+HANDOFF.md                 ← running baton log between agents/owner — read before working
 README.md                  ← legacy market-research README (leave as-is)
 Research - Slides/         ← legacy market research (leave as-is)
 docs/saturday/
-  00-product-brief.md      ← concept, decisions, positioning, pricing
+  00-product-brief.md      ← concept, decisions, positioning, pricing, privacy pillars
   01-research-ondevice-llm.md    ← on-device LLM/ASR feasibility research
   02-research-audio-listening.md ← listening/session/App Store constraints research
   03-research-integrations-market.md ← system integrations + competitive landscape
   04-architecture.md       ← system architecture (phone/watch, pipelines, tool calling)
   05-roadmap.md            ← phased build plan (M0…)
-  06-features-ux-differentiation.md ← feature set, workflows, Siri differentiation, trust UX
-app/                       ← (future) Xcode project — not created yet
+  06-features-ux-differentiation.md ← feature set, workflows, Siri/ChatGPT differentiation
+app/
+  README.md                ← layer rules + Mac setup checklist
+  SaturdayCore/            ← tested pure-Swift core (builds on Linux — keep it that way)
+  SaturdayApp/             ← iOS shell (⚠️ unverified until compiled in Xcode)
+  SaturdayWatch/           ← watchOS thin client (⚠️ unverified)
+  project.yml              ← XcodeGen spec
 ```
 
 ## Working conventions for Claude
 
-- This project will be continued on the owner's laptop in Xcode; until then, work here is
-  **planning, research, and architecture docs** — do not scaffold an Xcode project unless
-  asked.
+- **Handoff protocol**: this repo is co-developed with Codex and the owner. Read
+  `HANDOFF.md` top entry before working; prepend an entry after substantive work.
+  `AGENTS.md` hard rules (core-layer purity, test-before-push, privacy invariants,
+  unverified-headers) apply to Claude too.
+- Big builds/tests can run here: a Swift 6.1 Linux toolchain works for
+  `app/SaturdayCore` (`swift test`). iOS/watchOS shells compile only in Xcode on
+  the owner's Mac — mark such work unverified rather than claiming it works.
 - Keep docs in English (product decision: English-first), concise and decision-oriented;
   mark open questions explicitly in an "Open questions" section rather than burying them.
 - When feasibility claims matter (memory limits, App Store policy, API availability),

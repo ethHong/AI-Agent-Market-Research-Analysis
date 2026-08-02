@@ -1,0 +1,45 @@
+# XcodeGen spec — generates Saturday.xcodeproj on the Mac:
+#   brew install xcodegen && cd app && xcodegen generate
+# Then in Xcode: set your Team for signing, build the "Saturday" scheme.
+name: Saturday
+options:
+  bundleIdPrefix: com.ethhong.saturday
+  deploymentTarget:
+    iOS: "26.0"
+    watchOS: "11.0"
+packages:
+  SaturdayCore:
+    path: SaturdayCore
+targets:
+  Saturday:
+    type: application
+    platform: iOS
+    sources: [SaturdayApp/Sources]
+    dependencies:
+      - package: SaturdayCore
+      - target: SaturdayWatch
+    info:
+      path: SaturdayApp/Info.plist
+      properties:
+        UIBackgroundModes: [audio]
+        NSMicrophoneUsageDescription: >-
+          Saturday transcribes conversations you choose to record, entirely on this
+          device. Audio is discarded immediately after transcription.
+        NSSpeechRecognitionUsageDescription: >-
+          Saturday uses on-device speech recognition to transcribe your sessions.
+          Nothing is sent to Apple or anyone else.
+        NSCalendarsWriteOnlyAccessUsageDescription: >-
+          Lets Saturday add events you ask for. It cannot read your calendar.
+        NSRemindersFullAccessUsageDescription: >-
+          Lets Saturday create reminders you ask for.
+        NSLocationWhenInUseUsageDescription: >-
+          Used only to find nearby places when you ask.
+  SaturdayWatch:
+    type: application
+    platform: watchOS
+    sources: [SaturdayWatch/Sources]
+    dependencies: []
+    info:
+      path: SaturdayWatch/Info.plist
+      properties:
+        WKCompanionAppBundleIdentifier: com.ethhong.saturday.Saturday

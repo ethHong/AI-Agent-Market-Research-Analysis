@@ -1,0 +1,47 @@
+{
+  "": {
+    "swift-dependencies": "/home/user/AI-Agent-Market-Research-Analysis/app/SaturdayCore/.build/x86_64-unknown-linux-gnu/debug/SaturdayCoreTests.build/master.swiftdeps"
+  },
+  "/home/user/AI-Agent-Market-Research-Analysis/app/SaturdayCore/Tests/SaturdayCoreTests/DDGParserTests.swift": {
+    "dependencies": "/home/user/AI-Agent-Market-Research-Analysis/app/SaturdayCore/.build/x86_64-unknown-linux-gnu/debug/SaturdayCoreTests.build/DDGParserTests.d",
+    "object": "/home/user/AI-Agent-Market-Research-Analysis/app/SaturdayCore/.build/x86_64-unknown-linux-gnu/debug/SaturdayCoreTests.build/DDGParserTests.swift.o",
+    "swiftmodule": "/home/user/AI-Agent-Market-Research-Analysis/app/SaturdayCore/.build/x86_64-unknown-linux-gnu/debug/SaturdayCoreTests.build/DDGParserTests~partial.swiftmodule",
+    "swift-dependencies": "/home/user/AI-Agent-Market-Research-Analysis/app/SaturdayCore/.build/x86_64-unknown-linux-gnu/debug/SaturdayCoreTests.build/DDGParserTests.swiftdeps"
+  },
+  "/home/user/AI-Agent-Market-Research-Analysis/app/SaturdayCore/Tests/SaturdayCoreTests/HotphraseDetectorTests.swift": {
+    "dependencies": "/home/user/AI-Agent-Market-Research-Analysis/app/SaturdayCore/.build/x86_64-unknown-linux-gnu/debug/SaturdayCoreTests.build/HotphraseDetectorTests.d",
+    "object": "/home/user/AI-Agent-Market-Research-Analysis/app/SaturdayCore/.build/x86_64-unknown-linux-gnu/debug/SaturdayCoreTests.build/HotphraseDetectorTests.swift.o",
+    "swiftmodule": "/home/user/AI-Agent-Market-Research-Analysis/app/SaturdayCore/.build/x86_64-unknown-linux-gnu/debug/SaturdayCoreTests.build/HotphraseDetectorTests~partial.swiftmodule",
+    "swift-dependencies": "/home/user/AI-Agent-Market-Research-Analysis/app/SaturdayCore/.build/x86_64-unknown-linux-gnu/debug/SaturdayCoreTests.build/HotphraseDetectorTests.swiftdeps"
+  },
+  "/home/user/AI-Agent-Market-Research-Analysis/app/SaturdayCore/Tests/SaturdayCoreTests/PromptAssemblerTests.swift": {
+    "dependencies": "/home/user/AI-Agent-Market-Research-Analysis/app/SaturdayCore/.build/x86_64-unknown-linux-gnu/debug/SaturdayCoreTests.build/PromptAssemblerTests.d",
+    "object": "/home/user/AI-Agent-Market-Research-Analysis/app/SaturdayCore/.build/x86_64-unknown-linux-gnu/debug/SaturdayCoreTests.build/PromptAssemblerTests.swift.o",
+    "swiftmodule": "/home/user/AI-Agent-Market-Research-Analysis/app/SaturdayCore/.build/x86_64-unknown-linux-gnu/debug/SaturdayCoreTests.build/PromptAssemblerTests~partial.swiftmodule",
+    "swift-dependencies": "/home/user/AI-Agent-Market-Research-Analysis/app/SaturdayCore/.build/x86_64-unknown-linux-gnu/debug/SaturdayCoreTests.build/PromptAssemblerTests.swiftdeps"
+  },
+  "/home/user/AI-Agent-Market-Research-Analysis/app/SaturdayCore/Tests/SaturdayCoreTests/RollingTranscriptTests.swift": {
+    "dependencies": "/home/user/AI-Agent-Market-Research-Analysis/app/SaturdayCore/.build/x86_64-unknown-linux-gnu/debug/SaturdayCoreTests.build/RollingTranscriptTests.d",
+    "object": "/home/user/AI-Agent-Market-Research-Analysis/app/SaturdayCore/.build/x86_64-unknown-linux-gnu/debug/SaturdayCoreTests.build/RollingTranscriptTests.swift.o",
+    "swiftmodule": "/home/user/AI-Agent-Market-Research-Analysis/app/SaturdayCore/.build/x86_64-unknown-linux-gnu/debug/SaturdayCoreTests.build/RollingTranscriptTests~partial.swiftmodule",
+    "swift-dependencies": "/home/user/AI-Agent-Market-Research-Analysis/app/SaturdayCore/.build/x86_64-unknown-linux-gnu/debug/SaturdayCoreTests.build/RollingTranscriptTests.swiftdeps"
+  },
+  "/home/user/AI-Agent-Market-Research-Analysis/app/SaturdayCore/Tests/SaturdayCoreTests/SessionStateMachineTests.swift": {
+    "dependencies": "/home/user/AI-Agent-Market-Research-Analysis/app/SaturdayCore/.build/x86_64-unknown-linux-gnu/debug/SaturdayCoreTests.build/SessionStateMachineTests.d",
+    "object": "/home/user/AI-Agent-Market-Research-Analysis/app/SaturdayCore/.build/x86_64-unknown-linux-gnu/debug/SaturdayCoreTests.build/SessionStateMachineTests.swift.o",
+    "swiftmodule": "/home/user/AI-Agent-Market-Research-Analysis/app/SaturdayCore/.build/x86_64-unknown-linux-gnu/debug/SaturdayCoreTests.build/SessionStateMachineTests~partial.swiftmodule",
+    "swift-dependencies": "/home/user/AI-Agent-Market-Research-Analysis/app/SaturdayCore/.build/x86_64-unknown-linux-gnu/debug/SaturdayCoreTests.build/SessionStateMachineTests.swiftdeps"
+  },
+  "/home/user/AI-Agent-Market-Research-Analysis/app/SaturdayCore/Tests/SaturdayCoreTests/ToolCallingTests.swift": {
+    "dependencies": "/home/user/AI-Agent-Market-Research-Analysis/app/SaturdayCore/.build/x86_64-unknown-linux-gnu/debug/SaturdayCoreTests.build/ToolCallingTests.d",
+    "object": "/home/user/AI-Agent-Market-Research-Analysis/app/SaturdayCore/.build/x86_64-unknown-linux-gnu/debug/SaturdayCoreTests.build/ToolCallingTests.swift.o",
+    "swiftmodule": "/home/user/AI-Agent-Market-Research-Analysis/app/SaturdayCore/.build/x86_64-unknown-linux-gnu/debug/SaturdayCoreTests.build/ToolCallingTests~partial.swiftmodule",
+    "swift-dependencies": "/home/user/AI-Agent-Market-Research-Analysis/app/SaturdayCore/.build/x86_64-unknown-linux-gnu/debug/SaturdayCoreTests.build/ToolCallingTests.swiftdeps"
+  },
+  "/home/user/AI-Agent-Market-Research-Analysis/app/SaturdayCore/Tests/SaturdayCoreTests/TranscriptIndexTests.swift": {
+    "dependencies": "/home/user/AI-Agent-Market-Research-Analysis/app/SaturdayCore/.build/x86_64-unknown-linux-gnu/debug/SaturdayCoreTests.build/TranscriptIndexTests.d",
+    "object": "/home/user/AI-Agent-Market-Research-Analysis/app/SaturdayCore/.build/x86_64-unknown-linux-gnu/debug/SaturdayCoreTests.build/TranscriptIndexTests.swift.o",
+    "swiftmodule": "/home/user/AI-Agent-Market-Research-Analysis/app/SaturdayCore/.build/x86_64-unknown-linux-gnu/debug/SaturdayCoreTests.build/TranscriptIndexTests~partial.swiftmodule",
+    "swift-dependencies": "/home/user/AI-Agent-Market-Research-Analysis/app/SaturdayCore/.build/x86_64-unknown-linux-gnu/debug/SaturdayCoreTests.build/TranscriptIndexTests.swiftdeps"
+  }
+}
