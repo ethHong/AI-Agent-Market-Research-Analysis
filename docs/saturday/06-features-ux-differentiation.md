@@ -127,10 +127,37 @@ A 3–4B on-device model has weak world knowledge. Instead of hiding that, produ
 ## 7. Anti-scope (what Saturday refuses to be)
 
 Explicitly out, forever or until dominance in the core: music control, smart home,
-general web search, phone settings, timers-as-identity, open-ended chatbot companion,
+being-a-search-engine, phone settings, timers-as-identity, open-ended chatbot companion,
 image generation. Every one of these is Siri/ChatGPT home turf and dilutes the "it was
 in the room" identity. The tool layer exists to serve conversation outcomes (calendar,
 reminders, places, drafts) — not to become a junk drawer.
+
+**Web lookup is allowed as a *tool*, not an identity** (owner decision 2026-08-01):
+when a conversation-grounded question needs outside facts, the LLM may call
+`WebLookupTool` — but Saturday never becomes a general search box. See §8a.
+
+## 8a. WebLookupTool design (no API keys, no servers)
+
+Constraint check: "no cloud" means **LLM inference** is on-device; networking per se is
+already in the product (MKLocalSearch). The line to hold is: **transcript never leaves
+the device — only a distilled query string does.**
+
+- **Sources (keyless, serverless):**
+  1. *Wikipedia/Wikidata REST API* — free, stable, ToS-clean. Primary source for
+     entity/term/company lookups (most Explain-class needs).
+  2. *DuckDuckGo HTML endpoint parse* — the only keyless general-web path; brittle
+     (HTML changes break it) and ToS-gray → ship as "beta", wrap in a thin parser we
+     expect to patch. No key to steal, no quota to pay.
+  3. Rejected: Brave/Bing/Google APIs (embedded keys = cost + abuse risk, conflicts
+     with buy-once pricing); self-hosted SearXNG (violates zero-server rule).
+- **Privacy contract:** opt-in toggle ("Allow web lookups"); the tool request contains
+  only the LLM-composed query terms, never transcript text; answers carry a third
+  source label — `🌐 From the web` — alongside `🗣` / `🧠`.
+- **Offline behavior:** airplane mode → tool reports unavailable → model falls back to
+  the §6 honest refusal ("can't check the web right now").
+- **Flow:** on-device LLM decides tool call → composes minimal query → fetch top
+  results/extract → on-device LLM synthesizes answer with citation of source name.
+- Roadmap: M3 (tool layer) behind the opt-in toggle; Wikipedia first, DDG beta second.
 
 ## 8. Architecture implication: transcript RAG inside 4k tokens
 
