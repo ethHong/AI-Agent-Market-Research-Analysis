@@ -22,6 +22,27 @@ Five moats Siri structurally cannot cross:
 
 **Pitch compression:** *Siri answers questions. Saturday answers your situation.*
 
+### vs ChatGPT / Claude (the other front)
+
+Chat apps are **destinations**: you stop what you're doing, open them, and *explain the
+situation* before you can ask. Saturday was already in the room — **zero context
+re-entry** is the differentiator no chatbot can copy from inside a chat UI:
+
+| | ChatGPT/Claude (incl. voice) | Saturday |
+|---|---|---|
+| Context | Only what you type/say to it | Heard the whole room already |
+| Mid-conversation use | Break the flow, explain, then ask | 3 s wrist glance, zero explanation |
+| Posture | A 1:1 session *with the AI* | A quiet aide *inside a human conversation* |
+| iOS actions | Can't touch EventKit/Reminders | Native calendar/reminders/places/drafts |
+| Privacy | Conversation goes to their servers | Never leaves the phone; airplane-mode demo |
+
+**Where we lose — and therefore don't fight:** open-ended knowledge Q&A and long-form
+generation. A 3–4B on-device model loses that comparison every time. Consequence for
+**W4 (sessionless mode)**: frame and market it as **quick actions** (calendar, reminders,
+places, drafts — things ChatGPT can't do on iOS), *not* as a general chat mode. The UI
+should nudge sessionless general-knowledge questions toward web-lookup-grounded short
+answers, never long chatbot conversations.
+
 ## 2. Core primitive: the Session
 
 Everything is designed around one object — a **Session** (a bounded stretch of real-world
@@ -87,12 +108,13 @@ Focus set at start; queries flow through AirPods whisper or typed input
 Advise/Reality-check classes shine here. This is the workflow no big-tech assistant
 will ever ship — too spicy for a platform brand, perfect for a $30 tool.
 
-### W4 — Instant capture, no session (degraded but useful)
-No active session: Saturday still works as a normal push-to-talk assistant for Act/
-Explain queries (calendar, reminders, places, drafts). Honest Siri-parity mode — it
-exists so the app is useful daily, keeping it on the Action Button so sessions actually
-get started when they matter. (Without W4, users un-assign the button and the moat
-features never get used.)
+### W4 — Quick actions, no session (deliberately narrow)
+No active session: Saturday works as a push-to-talk **action** assistant — calendar,
+reminders, places, message drafts (the things ChatGPT can't do on iOS), plus short
+web-lookup facts. It exists so the app is useful daily, keeping it on the Action Button
+so sessions actually get started when they matter. **Not** a general chat mode: no
+long-form generation, no open-ended knowledge conversations — that's ChatGPT's turf and
+a 3–4B model loses the comparison (see §1). UI keeps answers short and action-shaped.
 
 ### W5 — Post-session recall (the memory dividend)
 Local, searchable session library. "Ask your week": *"what did I promise anyone this

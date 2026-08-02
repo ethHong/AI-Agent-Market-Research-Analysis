@@ -56,11 +56,33 @@ heard, answers instantly, and never uploads a word."
 
 - vs **Siri**: Siri has no memory of the room's conversation; Saturday's whole premise
   is conversational context. (And LLM-Siri keeps slipping.)
-- vs **ChatGPT/Gemini voice**: cloud-first, no ambient listening posture, subscription.
+- vs **ChatGPT/Claude/Gemini**: destination apps — you must stop, open them, and explain
+  the situation before asking. Saturday already heard it: zero context re-entry. Plus
+  native iOS actions and no-cloud privacy. We do NOT compete on open-ended knowledge
+  chat (a 3–4B model loses that fight; see doc 06 anti-scope).
 - vs **Otter/Granola/Plaud/Limitless**: recorders with cloud processing and/or extra
   hardware; Saturday is real-time Q&A, on-device, on hardware you already own.
 - Tagline candidates: *"The assistant that was in the room."* / *"Heard everything.
   Tells no one."*
+
+## Privacy pillars (non-negotiable, owner-confirmed)
+
+The product must never read as a surveillance tool. Five pillars, enforced in design,
+copy, and code:
+1. **No always-on, as philosophy not just platform limit**: explicit start/stop; orange
+   mic indicator + Live Activity always visible; background start is impossible on iOS
+   and we advertise that we wouldn't want it anyway.
+2. **Audio is discarded on transcription** (Granola precedent): only text is ever
+   stored; no voiceprints.
+3. **Forgetting is the default**: transcripts auto-delete after N days (default on);
+   "ephemeral session" option keeps only the end-of-session summary.
+4. **Nothing leaves the phone**: ASR + LLM on-device; web lookup is opt-in and sends
+   only distilled query terms, never transcript.
+5. **Consent UX**: onboarding teaches disclosure norms; framing everywhere is
+   "note-taker for conversations you're part of," never ambient capture of others.
+
+Marketing compression: *"Listens only when you ask. Forgets on your schedule. Nothing
+ever leaves your phone."*
 
 ## Open questions
 
